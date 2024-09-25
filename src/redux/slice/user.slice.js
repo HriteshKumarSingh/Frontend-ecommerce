@@ -639,6 +639,25 @@ const userSlice = createSlice({
             })
 
 
+            // Forget cases
+            .addCase(forgetUser.pending, (state) => {
+                state.loading = true
+                state.error = false
+                state.success = false
+            })
+            .addCase(forgetUser.fulfilled, (state, action) => {
+                state.loading = false
+                state.user = action.payload;
+                state.success = true
+            })
+            .addCase(forgetUser.rejected, (state, action) => {
+                state.loading = false
+                state.user = action.payload
+                state.error = action.payload.error
+                state.success = false
+            })
+
+
             // OTP cases
             .addCase(otpUser.pending, (state) => {
                 state.loading = true

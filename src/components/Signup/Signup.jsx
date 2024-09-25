@@ -13,7 +13,7 @@ import Logo from "../../assets/icons/logo.png"
 
 function Signup() {
   const navigate = useNavigate()
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm()
+  const { register, handleSubmit, formState: { errors } } = useForm()
   const { user, loading, error, success } = useSelector((state) => state.users)
   const [visiblePassword, setVisiblePassword] = useState(false);
   const dispatch = useDispatch()
@@ -144,17 +144,17 @@ function Signup() {
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={loading}
             className={`background-40BFFF uppercase text-xl py-4 rounded-md text-white font-bold border-none cursor-pointer ${
-              isSubmitting ? "cursor-not-allowed" : "cursor-pointer"
+              loading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
           >
-            Sign Up
+            {loading ? "creating..." : "Sign up"}
           </button>
           <div className="flex w-full justify-center text-center items-center gap-1">
             <p className="text text-lg">Have an account?</p>
             <Link to={"/login"} className="color-40BFFF text-lg font-bold">
-              Sign In
+              Login
             </Link>
           </div>
         </div>

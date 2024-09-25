@@ -99,18 +99,21 @@ function Login() {
 
           <button
             type="submit"
-            disabled={isSubmitting}
+            disabled={loading}
             className={`background-40BFFF uppercase text-xl py-4 rounded-md text-white font-bold border-none cursor-pointer ${
-              isSubmitting ? "cursor-not-allowed" : "cursor-pointer"
+              loading ? "cursor-not-allowed" : "cursor-pointer"
             }`}
           >
-            login
+            {loading ? "logging..." : "login"}
           </button>
-          <div className="flex w-full justify-center text-center items-center gap-1">
-            <p className="text text-lg">Don’t have a account?</p>
-            <Link to={"/signup"} className="color-40BFFF text-lg font-bold">
-              Register
+          <div className="flex w-full justify-center text-center items-center flex-col gap-1">
+            <Link to={"/forgot"} className="color-40BFFF text-lg font-bold">
+              Forgot Password?
             </Link>
+            <div className="flex gap-1">
+              <p className="text text-lg">Don’t have a account?</p>
+              <Link to={"/signup"} className="color-40BFFF text-lg font-bold">Register</Link>
+            </div>
           </div>
         </div>
       </form>
