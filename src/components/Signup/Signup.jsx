@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { signupUser } from "../../redux/slice/user.slice"
+import { signupUser, resetState } from "../../redux/slice/user.slice"
 import { useState} from "react"
 import { AiOutlineUser } from "react-icons/ai"
 import { MdOutlineEmail } from "react-icons/md"
@@ -30,6 +30,7 @@ function Signup() {
     if (loading === false && success && user.message) {
       handleSuccess(user.message);
       setTimeout(() => {
+        dispatch(resetState())
         navigate("/login")
       }, 2000);
     } else if (error) {

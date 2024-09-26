@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { forgetUser } from "../../redux/slice/user.slice";
+import { forgetUser, resetState } from "../../redux/slice/user.slice";
 import { MdOutlineEmail } from "react-icons/md";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
@@ -22,12 +22,13 @@ function Forgot() {
     if (loading === false && success && user.message) {
       handleSuccess(user.message);
       setTimeout(() => {
-        navigate("/home");
+        dispatch(resetState())
+        navigate("/otp");
       }, 2000);
     } else if (error) {
       handleError(user.message);
     }
-  }, [loading, success, error, user, navigate]);
+  }, [loading, success, error]);
 
   return (
     <div>

@@ -1,6 +1,6 @@
 import React, { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { loginUser } from "../../redux/slice/user.slice"
+import { loginUser, resetState } from "../../redux/slice/user.slice"
 import { useState} from "react"
 import { MdOutlineEmail } from "react-icons/md"
 import { RiLock2Line } from "react-icons/ri"
@@ -29,6 +29,7 @@ function Login() {
     if (loading === false && success && user.message) {
       handleSuccess(user.message);
       setTimeout(() => {
+        dispatch(resetState())
         navigate("/home")
       }, 2000);
     } else if (error) {
